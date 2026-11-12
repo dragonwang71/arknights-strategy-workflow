@@ -1,0 +1,30 @@
+{
+  "input_kind": "synthetic",
+  "description": "Invented unit labels and observations for testing candidate generation; not a real game plan or performance result.",
+  "plan": {
+    "bindings": {"role": "unit", "support": "other-unit"},
+    "steps": [
+      {"id": "initial", "kind": "Deploy", "task": "role"},
+      {"id": "other", "kind": "Deploy", "task": "support"},
+      {"id": "retreat", "kind": "Retreat", "task": "role", "kills": 5, "pre_frames": 60, "post_frames": 3},
+      {"id": "return", "kind": "Deploy", "task": "role"}
+    ]
+  },
+  "result": {
+    "feasible": false,
+    "error": null,
+    "trace": [
+      {"kind": "spawn", "source_id": "unit", "step_id": "initial", "frame": 10},
+      {"kind": "withdraw", "source_id": "unit", "step_id": "retreat", "frame": 80},
+      {"kind": "spawn", "source_id": "unit", "step_id": "return", "frame": 140}
+    ],
+    "diagnostic": {
+      "tactical_evidence": true,
+      "pending_deployment": {"step_id": "return", "wait_kind": "deployment_unavailable"},
+      "first_leak": {
+        "from_frame": 100,
+        "before": {"dp": 30, "cards": [{"id": "unit", "cost": 20}], "characters": []}
+      }
+    }
+  }
+}
